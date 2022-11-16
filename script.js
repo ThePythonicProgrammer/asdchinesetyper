@@ -1,6 +1,6 @@
 console.log('ASD Chinese Typing Test')
 console.log('Created by Liam Gifford')
-console.log('Last Updated 16 November | 09:41 AM')
+console.log('Last Updated 16 November | 09:47 AM')
 
 // SwitchPage Setup
 const switchBtns = document.getElementsByClassName('switch')
@@ -188,9 +188,8 @@ function intervalRegulator(){
     var interval = setInterval(testLoop, 100);
     var timer = setInterval(function(){
         document.getElementById('timer').innerHTML = Math.floor(seconds)
-        seconds -= .1
+        seconds -= .5
         
-        // cleanup
         if (seconds <= 0) {
             clearInterval(interval)
             clearInterval(timer)
