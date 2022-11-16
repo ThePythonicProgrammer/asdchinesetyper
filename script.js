@@ -70,7 +70,7 @@ function createCharSheetData(data) {
         checkbox.classList.add('unitCheckbox')
         
         label.setAttribute('for', unit)
-        label.innerHTML = data[unit].name
+        label.innerHTML = '     ' + data[unit].name
 
         document.getElementById('unitList').appendChild(checkbox)
         document.getElementById('unitList').appendChild(label)
@@ -185,6 +185,7 @@ function intervalRegulator(){
             clearInterval(timer)
             
             evalStats(testParams, document.getElementById('input'), initSeconds)
+            document.getElementById('unitStatList').children.forEach((child) => document.getElementById('unitStatList').removeChild(child))
             switchPage('', 'stats')
             setupText()
             document.getElementById('input').value = ''
@@ -243,10 +244,9 @@ function evalStats(test, input, time) {
    let cpm = correct / time * 60
    document.getElementById('cpm').innerHTML = cpm
 
-   const unitList = document.getElementById('unitStatList')
    usedUnits.forEach(unit => {
     const li = document.createElement('li')
     li.innerHTML = units[unit].name
-    unitList.appendChild(li)
+    document.getElementById('unitStatList').appendChild(li)
    })
 }
