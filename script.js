@@ -136,9 +136,9 @@ function swapSimp(simpBool, usedUnits) {
     words = []
     for (var i=0; i<usedUnits.length; i++) {
         if (simpBool) {
-            usedUnits.forEach(unit => words.push(units[unit]))
+            usedUnits.forEach(unit => words.push(units[unit].simpWords))
         } else {
-            usedUnits.forEach(unit => words.push(units[unit]))
+            usedUnits.forEach(unit => words.push(units[unit].words))
         }
     }
 }
