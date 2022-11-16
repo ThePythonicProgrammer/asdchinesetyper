@@ -167,7 +167,12 @@ function switchPage(e, target) {
     }
 
     if (futurePage == 'test') {
+        document.getElementById('input').focus()
         intervalRegulator()
+    }
+
+    if (futurePage != 'test') {
+        document.getElementById('input').blur()
     }
 }
 
