@@ -1,6 +1,6 @@
 console.log('ASD Chinese Typing Test')
 console.log('Created by Liam Gifford')
-console.log('Last Updated 16 November | 08:30 AM')
+console.log('Last Updated 16 November | 08:36 AM')
 
 // SwitchPage Setup
 const switchBtns = document.getElementsByClassName('switch')
@@ -203,7 +203,7 @@ function testLoop() {
         const dataList = compareText(testParams, input)
         
         for (var i=inputLength; i<dataList.length; i++) {
-            testTextInds[i].style.color = (dataList[i]) ? 'green' : 'red'
+            testTextInds[i].style.color = dataList[i] == 0 ? 'green' : dataList[i] == 1 ? 'red' : dataList[i] == 2 ? 'black': 'black';
         }    
     }
     
@@ -220,6 +220,11 @@ function compareText(test, input) {
             output.push(0)
         }
     }
+    for (var i=0; i<(test.length-input.length); i++) {
+        output.push(2)
+    }
+
+    console.log((test.length == output.length) ? "✅" : "❎")
     return output
 }
 
