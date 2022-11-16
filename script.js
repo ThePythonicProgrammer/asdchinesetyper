@@ -141,7 +141,7 @@ function removeWords(unit, simpBool) {
 }
 
 function swapSimp(simpBool, usedUnits) {
-    words = []
+    words.length = 0
     console.log({words, usedUnits})
     for (var i=0; i<usedUnits.length; i++) {
         if (simpBool) {
@@ -254,7 +254,7 @@ function evalStats(test, input, time) {
    let cpm = correct / time * 60
    document.getElementById('cpm').innerHTML = cpm
 
-   const unitList = document.getElementById('unitList')
+   const unitList = document.getElementById('unitStatList')
    usedUnits.forEach(unit => {
     const li = document.createElement('li')
     li.innerHTML = units[unit].name
