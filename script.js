@@ -73,7 +73,7 @@ function createCharSheetData(data) {
         checkbox.classList.add('form-check-input')
         
         label.setAttribute('for', unit)
-        label.innerHTML = data[unit].name
+        label.innerHTML = '    ' + data[unit].name
         label.classList.add('form-check-label')
     
         document.getElementById('unitList').appendChild(checkbox)
