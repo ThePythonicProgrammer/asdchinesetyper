@@ -53,15 +53,12 @@ function readCharacterSheets(name) {
     $(document).ready(function () {
         $.get(name + '.yaml')
         .done(function (data) {
-          console.log('File load complete');
           createCharSheetData(jsyaml.load(data));
         });
     });
 }
 
 function createCharSheetData(data) {
-    console.log('running create char sheet data')
-    console.log({data})
     for (const unit in data) {
         const checkbox = document.createElement('input')
         const label = document.createElement('label')
@@ -75,13 +72,11 @@ function createCharSheetData(data) {
         label.setAttribute('for', unit)
         label.innerHTML = data[unit].name
 
-        console.log(label)
         document.getElementById('unitList').appendChild(checkbox)
         document.getElementById('unitList').appendChild(label)
         document.getElementById('unitList').appendChild(br)
     }
     units = data
-    console.log({units})
 }
 
 // Randomizes words in arr
@@ -94,7 +89,6 @@ function randomizeWords(array) {
         randNum = Math.floor(Math.random()*wordsFlattened.length)
         output.push(wordsFlattened[randNum])
     }
-    console.log({randomWords: output})
     return output.join('')
 }
 
@@ -109,7 +103,6 @@ function onModWords(e) {
     removeWords(unit, simpBool)
    }
 
-   console.log({words})
    setupText()
 }
 
@@ -126,7 +119,6 @@ function onSimplifiedChange(e) {
 function addWords(unit, simpBool) {
     words.push((simpBool) ? units[unit].simpWords : units[unit].words)
     usedUnits.push(unit)
-    console.log({addWords: words, simpBool, unit})
 }
 
 function removeWords(unit, simpBool) {
