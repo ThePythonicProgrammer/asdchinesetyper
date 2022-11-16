@@ -1,6 +1,6 @@
 console.log('ASD Chinese Typing Test')
 console.log('Created by Liam Gifford')
-console.log('Last Updated 16 November | 11:04 AM')
+console.log('Last Updated 16 November | 12:32 PM')
 
 // SwitchPage Setup
 const switchBtns = document.getElementsByClassName('switch')
@@ -9,6 +9,7 @@ for (var i=0; i<switchBtns.length; i++){
 }
 
 document.getElementById('simplified').onclick = onSimplifiedChange
+document.getElementById('input').value = ''
 
 // Constants Setup
 let units = {}
