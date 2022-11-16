@@ -159,7 +159,6 @@ function swapSimp(simpBool, usedUnits) {
 function switchPage(e, target) {
     
     const pages = document.getElementById('pages')
-    const prevent = e.target.getAttribute('data-prevent')
     let futurePage;
     if (target == undefined) {
         futurePage = e.target.getAttribute('data-target')
