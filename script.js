@@ -15,7 +15,7 @@ let units = {}
 let words = []
 let usedUnits = []
 let testParams = 'this is a test'
-let initSeconds = 3
+let initSeconds = 15
 const lngth = 50
 
 createText(testParams.split(''))
