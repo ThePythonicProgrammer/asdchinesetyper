@@ -131,7 +131,7 @@ function addWords(unit, simpBool) {
 
 function removeWords(unit, simpBool) {
     words.forEach((set, index) => {
-        if (set == units[unit].words) {
+        if (set == (simpBool) ? units[unit].simpWords : units[unit].words) {
             words.splice(index, 1)
         }
     })
@@ -142,7 +142,6 @@ function removeWords(unit, simpBool) {
 
 function swapSimp(simpBool, usedUnits) {
     words.length = 0
-    console.log({words, usedUnits})
     if (simpBool) {
         usedUnits.forEach(unit => words.push(units[unit].simpWords))
     } else {
