@@ -1,6 +1,6 @@
 console.log('ASD Chinese Typing Test')
 console.log('Created by Liam Gifford')
-console.log('Last Updated 16 November | 10:47 AM')
+console.log('Last Updated 16 November | 11:04 AM')
 
 // SwitchPage Setup
 const switchBtns = document.getElementsByClassName('switch')
