@@ -81,7 +81,7 @@ function randomizeWords(array, length) {
     output = []
     const wordsFlattened = array.flat()
     for (var i=0; i<wordsFlattened.length; i++) {
-        randNum = Math.floor(Math.random()*wordsFlattened[i].length)
+        randNum = Math.floor(Math.random()*wordsFlattened.length)
         output.push(wordsFlattened[randNum])
     }
     console.log({randomWords: output})
