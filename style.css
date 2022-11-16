@@ -1,3 +1,6 @@
 #test-letter {
     display: inline;
 }
+.center {
+    text-align: center;
+}

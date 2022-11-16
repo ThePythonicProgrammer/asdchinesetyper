@@ -7,19 +7,27 @@
     <body>
             <div id="pages">
                 <div id="landing">
-                    <h1>This is the landing page</h1>
-                    
-                    <label for="simplified">Simplified Characters</label>
-                    <input type="checkbox" id="simplified"></input>
+                    <h1 class="center">Chinese Typing Test</h1>
+                    <p>
+                        Instructions:
+                            - Select Simplified Characters if you wish to take the test in simplified rather than Traditional
+                            - Select Units to be tested on
+                            - Press the button to go to the Test
+                            - The test will start as soon as you enter the next page
+                    </p>
                     
                     <br>
+                    <label for="simplified">Simplified Characters</label>
+                    <input type="checkbox" id="simplified"></input>
+                    <br>
+                    
                     <div id="unitList">
                         <p>List of Units:</p>
                     </div> 
                     <br>
 
                     <br>
-                    <button class="switch" data-target="test" data-prevent="unitCheckbox">Next --></button>
+                    <button class="switch" data-target="test" data-prevent="unitCheckbox">Get Tested!</button>
                 </div>
                 <div id="test" style="display: none">
                     <p>Time Left: <span id="timer"></span></p>
@@ -35,7 +43,7 @@
                         <ul id="unitStatList"></ul>
                     </div>
                     
-                    <button class="switch" data-target="landing">Next --></button>
+                    <button class="switch" data-target="landing">Back to Landing Page</button>
                 </div>
             </div>    
             <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
