@@ -79,10 +79,11 @@ function createCharSheetData(data) {
 // Length - test length
 function randomizeWords(array, length) {
     output = []
-    const wordsFlattened = array.flat() 
+    const wordsFlattened = array.flat()
+    console.log(wordsFlattened) 
     for (var i=0; i<wordsFlattened; i++) {
         randNum = Math.floor(Math.random()*wordsFlattened[i].length)
-        output.push(array[randNum])
+        output.push(wordsFlattened[randNum])
     }
     console.log({array: array, randomWords: output})
     return output.join('')
