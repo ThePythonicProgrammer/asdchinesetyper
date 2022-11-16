@@ -1,6 +1,6 @@
 console.log('ASD Chinese Typing Test')
 console.log('Created by Liam Gifford')
-console.log('Last Updated 16 November | 10:33 AM')
+console.log('Last Updated 16 November | 10:47 AM')
 
 // SwitchPage Setup
 const switchBtns = document.getElementsByClassName('switch')
@@ -143,12 +143,10 @@ function removeWords(unit, simpBool) {
 function swapSimp(simpBool, usedUnits) {
     words.length = 0
     console.log({words, usedUnits})
-    for (var i=0; i<usedUnits.length; i++) {
-        if (simpBool) {
-            usedUnits.forEach(unit => words.push(units[unit].simpWords))
-        } else {
-            usedUnits.forEach(unit => words.push(units[unit].words))
-        }
+    if (simpBool) {
+        usedUnits.forEach(unit => words.push(units[unit].simpWords))
+    } else {
+        usedUnits.forEach(unit => words.push(units[unit].words))
     }
 }
 // end internal functions for onModWords
