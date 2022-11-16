@@ -71,7 +71,7 @@ function createCharSheetData(data) {
         checkbox.id = unit
         checkbox.setAttribute('type', 'checkbox')
         checkbox.onclick = onModWords
-        checkbox.classList.add('form-check-input')
+        checkbox.classList.add('form-check-input', 'check-space')
         
         label.setAttribute('for', unit)
         label.innerHTML = '    ' + data[unit].name
