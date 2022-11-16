@@ -60,18 +60,22 @@ function readCharacterSheets(name) {
 
 function createCharSheetData(data) {
     for (const unit in data) {
+        const div = document.createElement('div')
         const checkbox = document.createElement('input')
         const label = document.createElement('label')
         const br = document.createElement('br')
         
+        div.classList.add('form-check')
+
         checkbox.id = unit
         checkbox.setAttribute('type', 'checkbox')
         checkbox.onclick = onModWords
-        checkbox.classList.add('unitCheckbox')
+        checkbox.classList.add('form-check-input')
         
         label.setAttribute('for', unit)
-        label.innerHTML = '     ' + data[unit].name
-
+        label.innerHTML = data[unit].name
+        label.classList.add('form-check-label')
+    
         document.getElementById('unitList').appendChild(checkbox)
         document.getElementById('unitList').appendChild(label)
         document.getElementById('unitList').appendChild(br)
@@ -145,7 +149,6 @@ function swapSimp(simpBool, usedUnits) {
 // Switches Pages
 // e - onclick event
 // data-target - Attribute for id to switch the page to
-// data-prevent
 function switchPage(e, target) {
     
     const pages = document.getElementById('pages')
