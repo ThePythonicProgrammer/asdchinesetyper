@@ -13,44 +13,50 @@
                             <h1 class="center">Chinese Typing Test</h1>
                         </div>
                     </nav>
-                    <p>
-                        Instructions:
-                    </p>
-                    <ul>
-                        <li>Select Simplified Characters if you wish to take the test in simplified rather than Traditional</li>
-                        <li>Select Units to be tested on</li>
-                        <li>Press the button to go to the Test</li>
-                        <li>The test will start as soon as you enter the next page</li>
-                    </ul>
-                    
-                    <br>
-                    <label for="simplified">Simplified Characters</label>
-                    <input type="checkbox" id="simplified"></input>
-                    <br>
-                    
-                    <div id="unitList">
-                        <p>List of Units:</p>
-                    </div> 
-                    <br>
+                    <div class="container-fluid">
+                        <p>
+                            Instructions:
+                        </p>
+                        <ul>
+                            <li>Select Simplified Characters if you wish to take the test in simplified rather than Traditional</li>
+                            <li>Select Units to be tested on</li>
+                            <li>Press the button to go to the Test</li>
+                            <li>The test will start as soon as you enter the next page</li>
+                        </ul>
+                        
+                        <br>
+                        <label for="simplified">Simplified Characters</label>
+                        <input type="checkbox" id="simplified"></input>
+                        <br>
+                        
+                        <div id="unitList">
+                            <p>List of Units:</p>
+                        </div> 
+                        <br>
 
-                    <br>
-                    <button class="switch" data-target="test" data-prevent="unitCheckbox">Get Tested!</button>
+                        <br>
+                        <button type="button" class="btn btn-primary btn-lg switch" data-target="test" data-prevent="unitCheckbox">Get Tested!</button>
+                    </div>
                 </div>
                 <div id="test" style="display: none">
-                    <p>Time Left: <span id="timer"></span></p>
-                    <p id="test-text"></p>
-                    <input type="text" id="input"></input>
+                    <div class="container-fluid">
+                        <p>Time Left: <span id="timer"></span></p>
+                        <p id="test-text"></p>
+                        <textarea id="input"></textarea>
+                    </div>
                 </div>
                 <div id="stats" style="display: none">
-                    <p>These are your stats:</p>
-                    <p>Accuracy: <span id="accpercent"></span> (<span id="acctotal"></span>)</p>
-                    <p>Characters Per Minute: <span id="cpm"></span></p>
-                    <div>
-                        <p>Unit List:</p>
-                        <ul id="unitStatList"></ul>
+                    <div class="container-fluid">
+                        <p>These are your stats:</p>
+                        <p>Accuracy: <span id="accpercent"></span> (<span id="acctotal"></span>)</p>
+                        <p>Characters Per Minute: <span id="cpm"></span></p>
+                        <div>
+                            <p>Unit List:</p>
+                            <ul id="unitStatList"></ul>
+                        </div>
+                        
+                        <button type="button" class="btn btn-primary btn-lg switch" data-target="landing">Back to Landing Page</button>
                     </div>
-                    
-                    <button class="switch" data-target="landing">Back to Landing Page</button>
                 </div>
             </div>    
             <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
