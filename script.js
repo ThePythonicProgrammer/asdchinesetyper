@@ -142,6 +142,7 @@ function removeWords(unit, simpBool) {
 
 function swapSimp(simpBool, usedUnits) {
     words = []
+    console.log({words, usedUnits})
     for (var i=0; i<usedUnits.length; i++) {
         if (simpBool) {
             usedUnits.forEach(unit => words.push(units[unit].simpWords))
@@ -255,7 +256,7 @@ function evalStats(test, input, time) {
 
    const unitList = document.getElementById('unitList')
    usedUnits.forEach(unit => {
-    const li = document.createElement(li)
+    const li = document.createElement('li')
     li.innerHTML = units[unit].name
     unitList.appendChild(li)
    })
