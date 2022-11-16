@@ -1,6 +1,6 @@
 console.log('ASD Chinese Typing Test')
 console.log('Created by Liam Gifford')
-console.log('Last Updated 16 November | 08:06 AM')
+console.log('Last Updated 16 November | 08:15 AM')
 
 // SwitchPage Setup
 const switchBtns = document.getElementsByClassName('switch')
@@ -117,7 +117,7 @@ function onSimplifiedChange(e) {
 // swapSimp -> swaps all current words to the opposite of simp
 function addWords(unit, simpBool) {
     words.push((simpBool) ? units[unit].simpWords : units[unit].words)
-    usedUnits.push(units[unit])
+    usedUnits.push(unit)
     console.log({addWords: words, simpBool, unit})
 }
 
@@ -127,17 +127,18 @@ function removeWords(unit, simpBool) {
             words.splice(index, 1)
         }
     })
-    // units[unit].words.forEach((word) => words = words.filter(val => val != word))
-    // usedUnits = usedUnits.filter(val => units[unit] != val)
+    
+    const ind = usedUnits.indexOf(unit)
+    usedUnits.splice(ind, 1)
 }
 
 function swapSimp(simpBool, usedUnits) {
     words = []
     for (var i=0; i<usedUnits.length; i++) {
         if (simpBool) {
-            usedUnits[i].simpWords.forEach(word => {words.push(word)})
+            usedUnits.forEach(unit => words.push(units[unit]))
         } else {
-            usedUnits[i].words.forEach(word => {words.push(word)})
+            usedUnits.forEach(unit => words.push(units[unit]))
         }
     }
 }
@@ -169,6 +170,8 @@ function switchPage(e, target) {
 }
 
 // Regulates the two intervals, the color interval and the timer interval. I could not get them to work together, so they are seperate.
+// Color Interval --> Sets color of text has people type
+// Timer Interval --> Changes time, also switches page when time finishes.
 function intervalRegulator(){
     var seconds = initSeconds
     document.getElementById('timer').innerHTML = seconds
@@ -178,11 +181,13 @@ function intervalRegulator(){
         document.getElementById('timer').innerHTML = Math.floor(seconds)
         seconds -= .5
         if (seconds <= 0) {
+            // Cleanup
             clearInterval(interval)
             clearInterval(timer)
             
             evalStats(testParams, document.getElementById('input'), initSeconds)
             switchPage('', 'stats')
+            document.getElementById('input').value = ''
         }
     }, 500)
     
