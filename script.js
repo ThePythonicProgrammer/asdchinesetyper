@@ -1,6 +1,6 @@
 console.log('ASD Chinese Typing Test')
 console.log('Created by Liam Gifford')
-console.log('Last Updated 16 November | 08:57 AM')
+console.log('Last Updated 16 November | 09:20 AM')
 
 // SwitchPage Setup
 const switchBtns = document.getElementsByClassName('switch')
@@ -21,6 +21,13 @@ const lngth = 50
 createText(testParams.split(''))
 const sheets = readCharacterSheets('words')
 
+// Calls functions to setup test-text
+function setupText() {
+   testParams = randomizeWords(words)
+   deleteText()
+   createText(testParams.split(''))
+}
+
 // sends text to test-text in increments of a single character.
 function createText(list) {
     list.forEach((char, index) => {
@@ -28,10 +35,12 @@ function createText(list) {
         letter.setAttribute('data-text-pos', index)
         letter.innerHTML = char 
         letter.classList.add('test-letter')
+        letter.style.color = 'black'
         document.getElementById('test-text').appendChild(letter)
     })
 }
 
+// deletes the text from test-text
 function deleteText() {
     const parent = document.getElementById('test-text')
     while (parent.firstChild) {
@@ -61,6 +70,7 @@ function createCharSheetData(data) {
         checkbox.id = unit
         checkbox.setAttribute('type', 'checkbox')
         checkbox.onclick = onModWords
+        checkbox.classList.add('unitCheckbox')
         
         label.setAttribute('for', unit)
         label.innerHTML = data[unit].name
@@ -77,10 +87,10 @@ function createCharSheetData(data) {
 // Randomizes words in arr
 // Array - Array with chinese characters
 // Length - test length
-function randomizeWords(array, length) {
+function randomizeWords(array) {
     output = []
     const wordsFlattened = array.flat()
-    for (var i=0; i<wordsFlattened.length; i++) {
+    for (var i=0; i<lngth; i++) {
         randNum = Math.floor(Math.random()*wordsFlattened.length)
         output.push(wordsFlattened[randNum])
     }
@@ -100,9 +110,7 @@ function onModWords(e) {
    }
 
    console.log({words})
-   testParams = randomizeWords(words, lngth)
-   deleteText()
-   createText(testParams.split(''))
+   setupText()
 }
 
 // Trigger for simplified checkbox
@@ -147,9 +155,11 @@ function swapSimp(simpBool, usedUnits) {
 // Switches Pages
 // e - onclick event
 // data-target - Attribute for id to switch the page to
+// data-prevent
 function switchPage(e, target) {
     
     const pages = document.getElementById('pages')
+    const prevent = e.target.getAttribute('data-prevent')
     let futurePage;
     if (target == undefined) {
         futurePage = e.target.getAttribute('data-target')
@@ -176,17 +186,19 @@ function intervalRegulator(){
     var seconds = initSeconds
     document.getElementById('timer').innerHTML = seconds
 
-    var interval = setInterval(testLoop, 500);
+    var interval = setInterval(testLoop, 100);
     var timer = setInterval(function(){
         document.getElementById('timer').innerHTML = Math.floor(seconds)
-        seconds -= .5
+        seconds -= .1
+        
+        // cleanup
         if (seconds <= 0) {
-            // Cleanup
             clearInterval(interval)
             clearInterval(timer)
             
             evalStats(testParams, document.getElementById('input'), initSeconds)
             switchPage('', 'stats')
+            setupText()
             document.getElementById('input').value = ''
         }
     }, 500)
@@ -199,11 +211,13 @@ function testLoop() {
     const testTextInds = document.getElementById('test-text').children
     const input = document.getElementById('input').value
     
-    if (inputLength < input.length || inputLength > input.length) {    
-        const dataList = compareText(testParams, input)
-        
-        for (var i=inputLength; i<dataList.length; i++) {
-            testTextInds[i].style.color = dataList[i] == 0 ? 'green' : dataList[i] == 1 ? 'red' : dataList[i] == 2 ? 'black': 'black';
+    if (inputLength < input.length || inputLength > input.length) {
+        if(input.length <= testTextInds.length) {    
+            const dataList = compareText(testParams, input)
+            
+            for (var i=inputLength; i<dataList.length; i++) {
+                testTextInds[i].style.color = dataList[i] == 0 ? 'red' : dataList[i] == 1 ? 'green' : dataList[i] == 2 ? 'black': 'black';
+            }
         }    
     }
     
@@ -214,18 +228,17 @@ function testLoop() {
 function compareText(test, input) {
     let output = []
     for (var i=0; i<input.length; i++) {
-        if (test[i] == input[i]) {
-            output.push(1)
-        } else {
+        if (test[i] != input[i]) {
             output.push(0)
+        } else {
+            output.push(1)
         }
     }
     for (var i=0; i<(test.length-input.length); i++) {
         output.push(2)
     }
 
-    console.log((test.length == output.length) ? "✅" : "❎")
-    return output
+    return output;
 }
 
 function evalStats(test, input, time) {
@@ -241,4 +254,11 @@ function evalStats(test, input, time) {
 
    let cpm = correct / time * 60
    document.getElementById('cpm').innerHTML = cpm
+
+   const unitList = document.getElementById('unitList')
+   usedUnits.forEach(unit => {
+    const li = document.createElement(li)
+    li.innerHTML = units[unit].name
+    unitList.appendChild(li)
+   })
 }
